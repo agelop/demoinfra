@@ -24,7 +24,7 @@ resource "aws_instance" "appserver" {
   security_groups = ["default"]
   count           = "${var.countapp}"
   tags {
-	Name          = "${format("appserver-%03d", ${aws_instance.appserver.count[countapp.index]} + 1)}"
+	Name          = "${format("appserver-%03d", aws_instance.appserver.count[countapp.index] + 1)}"
   }
 }
 
@@ -36,7 +36,7 @@ resource "aws_instance" "webserver" {
   security_groups = ["default"]
   count           = "${var.countweb}"
   tags {
-	Name          = "${format("webserver-%03d", ${aws_instance.webserver.count[countweb.index]} + 1)}"
+	Name          = "${format("webserver-%03d", aws_instance.webserver.count[countweb.index] + 1)}"
   }
 }
 
@@ -47,6 +47,6 @@ resource "aws_instance" "dbserver" {
   security_groups = ["default"]
   count           = "${var.countdb}"  
   tags {
-	Name          = "${format("dbserver-%03d", ${aws_instance.dbserver.count[countdb.index]} + 1)}"
+	Name          = "${format("dbserver-%03d", aws_instance.dbserver.count[countdb.index] + 1)}"
   }
 }
