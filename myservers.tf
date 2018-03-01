@@ -1,7 +1,7 @@
 provider "aws" {
-  access_key = "AKIAIAH2OOTAJQGTRLFQ"
-  secret_key = "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"
-  region     = "us-east-2"
+  access_key = "AKIAIDURYYBFY3JXGQZA"
+  secret_key = "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"
+  region     = "sa-east-1"
 }
 
 variable "countapp" {
