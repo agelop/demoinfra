@@ -74,7 +74,7 @@
 - tasks:
 
   - name: Installing DB server
-#    yum: name=php state=latest
+    yum: list=sql
     
   - name: Configuring DBs
     copy: src=/root/demoinfra/webservers.log dest=/root/demoinfra/webservers.log
