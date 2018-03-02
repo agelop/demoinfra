@@ -15,7 +15,7 @@
     http_port: 80
     max_clients: 200
 
-tasks:
+- tasks:
   
   - name: ensure apache is at the latest version
     yum: name=httpd state=latest
@@ -48,7 +48,7 @@ tasks:
     http_port: 80
     max_clients: 200
 
-tasks:
+- tasks:
   
   - name: Install php latest version
     yum: name=php state=latest
@@ -71,7 +71,7 @@ tasks:
     http_port: 80
     max_clients: 200
   
-tasks:
+- tasks:
 
   - name: Installing DB server
 #    yum: name=php state=latest
@@ -94,7 +94,7 @@ tasks:
     http_port: 80
     max_clients: 200
  
-tasks:
+- tasks:
  
 #  - name: Installing DB server
 #    yum: name=php state=latest
