@@ -2,28 +2,16 @@ provider "aws" {
   region = "us-east-1"
 }
 
-variable "countapp" {
-  default = 2
-}
-
 variable "countweb" {
   default = 1
 }
 
-variable "countdb" {
-  default = 1
+variable "countapp" {
+  default = 2
 }
 
-resource "aws_instance" "appserver" {
-  ami             = "ami-26ebbc5c"
-  instance_type   = "t2.micro"
-  depends_on      = ["aws_instance.dbserver"]
-  key_name        = "awskeys"
-  security_groups = ["launch-wizard-1"]
-  count           = "${var.countapp}"
-  tags {
-	Name          = "${format("appserver-%03d", count.index + 1)}"
-  }
+variable "countdb" {
+  default = 1
 }
 
 resource "aws_instance" "webserver" {
@@ -35,6 +23,18 @@ resource "aws_instance" "webserver" {
   count           = "${var.countweb}"
   tags {
 	Name          = "${format("webserver-%03d", count.index + 1)}"
+  }
+}
+
+resource "aws_instance" "appserver" {
+  ami             = "ami-26ebbc5c"
+  instance_type   = "t2.micro"
+  depends_on      = ["aws_instance.dbserver"]
+  key_name        = "awskeys"
+  security_groups = ["launch-wizard-1"]
+  count           = "${var.countapp}"
+  tags {
+	Name          = "${format("appserver-%03d", count.index + 1)}"
   }
 }
 
