@@ -19,7 +19,7 @@ resource "aws_instance" "appserver" {
   instance_type   = "t2.micro"
   depends_on      = ["aws_instance.dbserver"]
   key_name        = "awskeys"
-  security_groups = ["default"]
+  security_groups = ["launch-wizard-1"]
   count           = "${var.countapp}"
   tags {
 	Name          = "${format("appserver-%03d", count.index + 1)}"
@@ -31,7 +31,7 @@ resource "aws_instance" "webserver" {
   instance_type   = "t2.micro"
   depends_on      = ["aws_instance.dbserver"]
   key_name        = "awskeys"
-  security_groups = ["default"]
+  security_groups = ["launch-wizard-1"]
   count           = "${var.countweb}"
   tags {
 	Name          = "${format("webserver-%03d", count.index + 1)}"
@@ -42,7 +42,7 @@ resource "aws_instance" "dbserver" {
   ami             = "ami-26ebbc5c"
   instance_type   = "t2.micro"
   key_name        = "awskeys"
-  security_groups = ["default"]
+  security_groups = ["launch-wizard-1"]
   count           = "${var.countdb}"  
   tags {
 	Name          = "${format("dbserver-%03d", count.index + 1)}"
