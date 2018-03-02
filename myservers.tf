@@ -1,8 +1,4 @@
-provider "aws" {
-  access_key = ""
-  secret_key = ""
-  region     = "sa-east-1"
-}
+provider "aws" {}
 
 variable "countapp" {
   default = 2
