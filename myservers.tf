@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 variable "countapp" {
-  default = 1
+  default = 2
 }
 
 variable "countweb" {
