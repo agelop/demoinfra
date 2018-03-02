@@ -1,6 +1,11 @@
 ---
-- name: Testes Playbook servers
-  hosts: tag_Name_appserver*
+
+# Playbook de Configuração de servidores AWS
+
+# Configuração de WEBSERVERS ==========================
+
+- name: Instalação e Configuração automática de WEBSERVERS
+  hosts: tag_Name_webserver*
 
   remote_user: ec2-user
   become_method: sudo
@@ -10,23 +15,24 @@
     http_port: 80
     max_clients: 200
   
-  
-  
-  tasks:
-   - name: pinging
-     ping: 
-  
-  
-#  - name: ensure apache is at the latest version
-#    yum: name=httpd state=latest
-#  - name: write the apache config file
-#    template: src=/srv/httpd.j2 dest=/etc/httpd.conf
+  - name: ensure apache is at the latest version
+    yum: name=httpd state=latest
+    
+  - name: write the apache config file
+    template: src=/srv/httpd.j2 dest=/etc/httpd.conf
+    
 #    notify:
 #    - restart apache
-#  - name: ensure apache is running (and enable it at boot)
-#    service: name=httpd state=started enabled=yes
+
+  - name: ensure apache is running
+    service: name=httpd state=started # enabled=yes
+
 #  handlers:
 #    - name: restart apache
 #      service: name=httpd state=restarted
+
+
+
+
 ...
 
