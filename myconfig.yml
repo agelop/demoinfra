@@ -1,6 +1,6 @@
 ---
 - name: Testes Playbook servers
-  hosts: tag_Name_dbserver*
+  hosts: tag_Name_appserver*
 
   remote_user: ec2-user
   become_method: sudo
