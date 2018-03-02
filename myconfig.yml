@@ -50,7 +50,7 @@
     - name: Installing DB server
       yum: list=sql
     - name: Configuring DBs
-      copy: src=/root/demoinfra/webservers.log dest=/root/webservers.log
+      copy: src=/root/demoinfra/dbservers.log dest=/root/dbservers.log
 # ================================================================
 # Configuração de Monitoração =====================================
 - name: Adicionanto servidores na monitoração
