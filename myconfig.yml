@@ -5,7 +5,7 @@
 # Configuração de WEBSERVERS =====================================
 
 - name: Instalação e Configuração automática de WEBSERVERS
-  hosts: tag_Name_webserver*
+- hosts: tag_Name_webserver*
 
   remote_user: ec2-user
   become_method: sudo
@@ -38,7 +38,7 @@
 # Configuração de APPSERVERS =====================================
 
 - name: Instalação e Configuração automática de APPSERVERS
-  hosts: tag_Name_appserver*
+- hosts: tag_Name_appserver*
 
   remote_user: ec2-user
   become_method: sudo
@@ -61,7 +61,7 @@
 # Configuração de DBSERVERS =====================================
 
 - name: Instalação e Configuração automática de DBSERVERS
-  hosts: tag_Name_dbserver*
+- hosts: tag_Name_dbserver*
 
   remote_user: ec2-user
   become_method: sudo
@@ -84,7 +84,7 @@
 # Configuração de Monitoração =====================================
 
 - name: Adicionanto servidores na monitoração
-  hosts: tag_Name_*
+- hosts: tag_Name_*
 
   remote_user: ec2-user
   become_method: sudo
