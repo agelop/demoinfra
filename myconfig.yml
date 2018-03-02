@@ -11,7 +11,7 @@
     - max_clients: 200
   tasks:
     - name: ensure apache is at the latest version
-      yum: name=httpd state=latest
+      yum: name=httpd state=present
     - name: Configuring application
       copy: src=/root/demoinfra/webservers.log dest=/root/demoinfra/webservers.log
     - name: ensure apache is running
@@ -33,7 +33,7 @@
     - max_clients: 200
   tasks:
     - name: Install php latest version
-      yum: name=php state=latest
+      yum: name=php state=present
     - name: Deploying application
       copy: src=/root/demoinfra/appservers.log dest=/root/demoinfra/appservers.log
 # ================================================================
