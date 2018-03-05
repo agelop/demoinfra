@@ -13,6 +13,9 @@
     - name: ensure apache is at the latest version
       yum: name=httpd state=present
     - name: Configuring application
+      copy: src=index.html dest=/var/www/html/index.html owner=apache group=apache mode=0666
+      copy: src=finnet.jpg dest=/var/www/html/finnet.jpg owner=apache group=apache mode=0666
+      copy: src=dti1.jpg dest=/var/www/html/dti1.jpg owner=apache group=apache mode=0666
       copy: src=webservers.log dest=/root/webservers.log owner=root group=root mode=0666
     - name: ensure apache is running
       service: name=httpd state=started enabled=yes
