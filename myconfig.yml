@@ -1,7 +1,7 @@
 ---
 # Playbook de Configuração de servidores AWS
 # Configuração de WEBSERVERS =====================================
-- name: Instalação e Configuração automática de WEBSERVERS
+- name: Instalacao e Configuracao automatica de WEBSERVERS
   hosts: tag_Name_webserver*
   remote_user: ec2-user
   become_method: sudo
@@ -23,7 +23,7 @@
 #     service: name=httpd state=restarted
 # ================================================================
 # Configuração de APPSERVERS =====================================
-- name: Instalação e Configuração automática de APPSERVERS
+- name: Instalacao e Configuracao automatica de APPSERVERS
   hosts: tag_Name_appserver*
   remote_user: ec2-user
   become_method: sudo
@@ -38,7 +38,7 @@
       copy: src=appservers.log dest=/root/appservers.log owner=root group=root mode=0666
 # ================================================================
 # Configuração de DBSERVERS =====================================
-- name: Instalação e Configuração automática de DBSERVERS
+- name: Instalacao e Configuracao automatica de DBSERVERS
   hosts: tag_Name_dbserver*
   remote_user: ec2-user
   become_method: sudo
@@ -53,7 +53,7 @@
       copy: src=dbservers.log dest=/root/dbservers.log owner=root group=root mode=0666
 # ================================================================
 # Configuração de Monitoração =====================================
-- name: Adicionanto servidores na monitoração
+- name: Adicionanto servidores na monitoracao
   hosts: tag_Name_*
   remote_user: ec2-user
   become_method: sudo
