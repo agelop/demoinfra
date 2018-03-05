@@ -7,7 +7,7 @@ variable "countweb" {
 }
 
 variable "countapp" {
-  default = 2
+  default = 1
 }
 
 variable "countdb" {
