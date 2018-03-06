@@ -72,8 +72,8 @@
          server_url: http://localhost/zabbix
          login_user: Admin
          login_password: zabbix
-         host_name: ec2_public_dns_name
-         visible_name: ec2_tag_Name
+         host_name: "{{ ec2_tag_Name }}"
+#        visible_name: 
          host_groups:
            - AWS Servers
          link_templates:
@@ -84,8 +84,8 @@
            - type: 1
              main: 1
              useip: 1
-             ip: 127.0.0.1
-             dns: ""
+             ip: "{{ ec2_ip_address }}"
+             dns: "{{ ec2_public_dns_name }}"
              port: 10050
 # ================================================================
 ...
