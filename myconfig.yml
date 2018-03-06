@@ -1,8 +1,9 @@
 ---
 # Playbook de Configuração de servidores AWS
-# Configuração de WEBSERVERS =====================================
-- name: Instalacao e Configuracao automatica de WEBSERVERS
-  hosts: tag_Name_webserver*
+#================================================================
+# Configuração de DBSERVERS =====================================
+- name: Instalacao e Configuracao automatica de DBSERVERS
+  hosts: tag_Name_dbserver*
   remote_user: ec2-user
   become_method: sudo
   become_user: root
@@ -10,20 +11,10 @@
     - http_port: 80
     - max_clients: 200
   tasks:
-    - name: ensure apache is at the latest version
-      yum: name=httpd state=present
-    - name: Configuring application
-      copy: src=index.html dest=/var/www/html/index.html owner=apache group=apache mode=0666
-      copy: src=finnet.jpg dest=/var/www/html/finnet.jpg owner=apache group=apache mode=0666
-      copy: src=dti1.jpg dest=/var/www/html/dti1.jpg owner=apache group=apache mode=0666
-      copy: src=webservers.log dest=/root/webservers.log owner=root group=root mode=0666
-    - name: ensure apache is running
-      service: name=httpd state=started enabled=yes
-# notify:
-#   - restart apache
-# handlers:
-#   - name: restart apache
-#     service: name=httpd state=restarted
+    - name: Installing DB server
+      yum: list=sql
+    - name: Configuring DBs
+      copy: src=dbservers.log dest=/root/dbservers.log owner=root group=root mode=0666
 # ================================================================
 # Configuração de APPSERVERS =====================================
 - name: Instalacao e Configuracao automatica de APPSERVERS
@@ -40,9 +31,9 @@
     - name: Deploying application
       copy: src=appservers.log dest=/root/appservers.log owner=root group=root mode=0666
 # ================================================================
-# Configuração de DBSERVERS =====================================
-- name: Instalacao e Configuracao automatica de DBSERVERS
-  hosts: tag_Name_dbserver*
+# Configuração de WEBSERVERS =====================================
+- name: Instalacao e Configuracao automatica de WEBSERVERS
+  hosts: tag_Name_webserver*
   remote_user: ec2-user
   become_method: sudo
   become_user: root
@@ -50,10 +41,23 @@
     - http_port: 80
     - max_clients: 200
   tasks:
-    - name: Installing DB server
-      yum: list=sql
-    - name: Configuring DBs
-      copy: src=dbservers.log dest=/root/dbservers.log owner=root group=root mode=0666
+    - name: ensure apache is at the latest version
+      yum: name=httpd state=present
+    - name: Configuring application
+      copy: src=index.html dest=/var/www/html/index.html owner=apache group=apache mode=0666
+    - name: Configuring resources1
+      copy: src=finnet.jpg dest=/var/www/html/finnet.jpg owner=apache group=apache mode=0666
+    - name: Configuring resources2
+      copy: src=dti1.jpg dest=/var/www/html/dti1.jpg owner=apache group=apache mode=0666
+    - name: Configuring logs
+      copy: src=webservers.log dest=/root/webservers.log owner=root group=root mode=0666
+    - name: ensure apache is running
+      service: name=httpd state=started enabled=yes
+# notify:
+#   - restart apache
+# handlers:
+#   - name: restart apache
+#     service: name=httpd state=restarted
 # ================================================================
 # Configuração de Monitoração =====================================
 - name: Adicionanto servidores na monitoracao
