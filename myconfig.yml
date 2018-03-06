@@ -60,7 +60,7 @@
 #     service: name=httpd state=restarted
 # ================================================================
 # Configuração de Monitoração =====================================
-- name: Adicionanto servidores na monitoracao
+- name: Adicionando servidores na monitoracao
   hosts: tag_Name_*
   remote_user: ec2-user
   become_method: sudo
