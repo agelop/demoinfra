@@ -66,10 +66,20 @@
   become_method: sudo
   become_user: root
   tasks:
-     - name: Adding servers to monitoring
-       ping:
-#    - name: Configuring DBs
-#    copy: src=webservers.log dest=/root/webservers.log owner=root group=root mode=0666
+     - name: Adding servers to monitoring Create new hosts or update an existing host's info
+       local_action:
+         - module: zabbix_host
+         - server_url: http://localhost/zabbix
+         - login_user: Admin
+         - login_password: zabbix
+         - host_name: ec2_public_dns_name
+         - visible_name: ec2_tag_Name
+         - host_groups:
+           AWS Servers
+         - link_templates:
+           Template Module ICMP Ping
+         - status: enabled
+         - state: present
 # ================================================================
 ...
 
