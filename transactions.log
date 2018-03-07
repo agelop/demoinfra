@@ -1,4 +1,3 @@
-id;bank;value;due_date;status;server;duration;size;description;region;error_code;queue
 CA-2016-152156;Bradesco;4840;01-04-18;OK;fnt002-sp01;10;281;Bookcases;SP;0;0
 CA-2016-152156;Bradesco;433;01-04-18;OK;fnt002-sp02;2;29;Chairs;SP;0;3
 CA-2016-138688;Bradesco;5054;01-04-18;OK;fnt002-sp03;7;320;Labels;SP;0;0
