@@ -1,2 +1,2 @@
 # demoinfra
-Demo provisionamento e configuração automatica
+Demo provisionamento e configuração Automática
