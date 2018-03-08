@@ -13,8 +13,8 @@
   tasks:
     - name: Installing DB server
       yum: list=sql
-    - name: Configuring DBs
-      copy: src=dbservers.log dest=/root/dbservers.log owner=root group=root mode=0666
+#   - name: Configuring DBs
+#     copy: src=dbservers.log dest=/root/dbservers.log owner=root group=root mode=0666
 # ================================================================
 # Configuração de APPSERVERS =====================================
 - name: Instalacao e Configuracao automatica de APPSERVERS
@@ -28,8 +28,8 @@
   tasks:
     - name: Install php latest version
       yum: name=php state=present
-    - name: Deploying application
-      copy: src=appservers.log dest=/root/appservers.log owner=root group=root mode=0666
+#   - name: Deploying application
+#     copy: src=appservers.log dest=/root/appservers.log owner=root group=root mode=0666
 # ================================================================
 # Configuração de WEBSERVERS =====================================
 - name: Instalacao e Configuracao automatica de WEBSERVERS
@@ -49,8 +49,8 @@
       copy: src=finnet.jpg dest=/var/www/html/finnet.jpg owner=apache group=apache mode=0666
     - name: Configuring resources2
       copy: src=dti1.jpg dest=/var/www/html/dti1.jpg owner=apache group=apache mode=0666
-    - name: Configuring logs
-      copy: src=webservers.log dest=/root/webservers.log owner=root group=root mode=0666
+#   - name: Configuring logs
+#     copy: src=webservers.log dest=/root/webservers.log owner=root group=root mode=0666
     - name: ensure apache is running
       service: name=httpd state=started enabled=yes
 # notify:
