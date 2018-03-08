@@ -7,11 +7,11 @@ variable "countdb" {
 }
 
 variable "countapp" {
-  default = 1
+  default = 2
 }
 
 variable "countweb" {
-  default = 1
+  default = 2
 }
 
 resource "aws_instance" "appserver" {
