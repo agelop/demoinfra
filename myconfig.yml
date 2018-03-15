@@ -1,6 +1,35 @@
 ---
 # Playbook de Configuração de servidores AWS
 #================================================================
+# Configuração de Monitoração =====================================
+- name: Adicionando servidores na monitoracao
+  hosts: tag_Name_*
+  remote_user: ec2-user
+  become_method: sudo
+  become_user: root
+  tasks:
+     - name: Adding servers to monitoring Create new hosts or update an existing host's info
+       local_action:
+         module: zabbix_host
+         server_url: http://localhost/zabbix
+         login_user: Admin
+         login_password: zabbix
+         host_name: "{{ ec2_tag_Name }}"
+#        visible_name: 
+         host_groups:
+           - AWS Servers
+         link_templates:
+           - Template Module ICMP Ping
+         status: enabled
+         state: present
+         interfaces:
+           - type: 1
+             main: 1
+             useip: 1
+             ip: "{{ ec2_ip_address }}"
+             dns: "{{ ec2_public_dns_name }}"
+             port: 10050
+# ================================================================
 # Configuração de DBSERVERS =====================================
 - name: Instalacao e Configuracao automatica de DBSERVERS
   hosts: tag_Name_dbserver*
@@ -12,7 +41,8 @@
     - max_clients: 200
   tasks:
     - name: Installing DB server
-      yum: list=sql
+      ping:
+#     yum: list=sql
 #   - name: Configuring DBs
 #     copy: src=dbservers.log dest=/root/dbservers.log owner=root group=root mode=0666
 # ================================================================
@@ -27,7 +57,8 @@
     - max_clients: 200
   tasks:
     - name: Install php latest version
-      yum: name=php state=present
+      ping:
+#     yum: name=php state=present
 #   - name: Deploying application
 #     copy: src=appservers.log dest=/root/appservers.log owner=root group=root mode=0666
 # ================================================================
@@ -58,35 +89,6 @@
 # handlers:
 #   - name: restart apache
 #     service: name=httpd state=restarted
-# ================================================================
-# Configuração de Monitoração =====================================
-- name: Adicionando servidores na monitoracao
-  hosts: tag_Name_*
-  remote_user: ec2-user
-  become_method: sudo
-  become_user: root
-  tasks:
-     - name: Adding servers to monitoring Create new hosts or update an existing host's info
-       local_action:
-         module: zabbix_host
-         server_url: http://localhost/zabbix
-         login_user: Admin
-         login_password: zabbix
-         host_name: "{{ ec2_tag_Name }}"
-#        visible_name: 
-         host_groups:
-           - AWS Servers
-         link_templates:
-           - Template Module ICMP Ping
-         status: enabled
-         state: present
-         interfaces:
-           - type: 1
-             main: 1
-             useip: 1
-             ip: "{{ ec2_ip_address }}"
-             dns: "{{ ec2_public_dns_name }}"
-             port: 10050
 # ================================================================
 ...
 
